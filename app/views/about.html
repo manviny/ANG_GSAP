@@ -1,1 +1,30 @@
-<p>This is the about view.</p>
+<style>
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+</style>
+
+<h1>{{slide.titulo}}</h1>
+<h2>{{slide.descripcion}}</h2>
+<div id="bg">
+<img id="bg_image" alt="{{slide.imagen}}" class="bg" src="http://sityoo.com/site/assets/files/{{slide.imagen}}"  /> 
+</div>
+
+
+
+
+

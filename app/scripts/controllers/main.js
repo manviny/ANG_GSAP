@@ -8,8 +8,54 @@
  * Controller of the tweenLiteApp
  */
 angular.module('tweenLiteApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $q, pwPage) {
 
+  	$scope.slides = [];			// contenedor de slides
+  	var numSlides = 0;			// numero de slides
+  	var segundos = 4000;
+  	var galeria = '1051';			//1051=chicas  1074=platos
+
+  	function getSlides() {
+  		var deferred = $q.defer();
+  		pwPage.getPage(galeria)    // cabana
+  		.then(function(response){
+  			console.debug("todo",response);
+  			var ids = response.singleFullFlip.split('|');
+			numSlides = ids.length;
+  			angular.forEach(ids, function(id, key) {
+			  	pwPage.getPage(id)    
+  				.then(function(slide){
+  					slide.imagen = id + '/' +slide.imagen;						// ruta + imagen
+  					$scope.slides.push(slide);
+  					if(numSlides == key + 1) deferred.resolve($scope.slides);	// no hay mas slides
+  				})
+			});
+  		})
+  		return deferred.promise; 
+	}
+
+
+	/**
+	 * comienza bucle carousel
+	 */
+	getSlides()
+	.then(function(response){
+		var i = 0;
+		$scope.slide = $scope.slides[0]; 
+	    var timer = setInterval(function(){
+	    	i++; if(i >= numSlides ) { i = 0 }		// no hay mas slides cicla
+	    	$scope.$apply();
+			$scope.slide = $scope.slides[i]; 
+			animateSlide();	
+	    }, segundos); 
+	})
+
+
+	/**
+	 * GSAP animacion
+	 * @return {[type]} [description]
+	 */
+	function animateSlide(){
 		var head = ("h1"),
 			content = ("#content"),
 		    subhead = ("h2"),
@@ -44,7 +90,7 @@ angular.module('tweenLiteApp')
 		tl.staggerFrom(icons, 0.2, {scale:0, autoAlpha:0}, 0.1, "stagger");
 
 		/* --- Control playback methods --- */
-
+	}
 
 
   });

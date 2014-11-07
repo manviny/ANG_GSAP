@@ -1,26 +1,102 @@
+<style>
+  body, h1, h2, h3, p {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: #fff;
+}
+
+body {
+  background-color:#000;
+}
+
+h1 {
+  position: relative;
+  margin-top: 10px;
+  font-size: 36px;
+  font-weight: normal;
+}
+
+h2 {
+  position: relative;
+  font-size: 22px;
+  font-weight: normal;
+  color: #cfcfcf;
+}
+
+#demoWrapper {
+  width: 600px;
+  height: 350px;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+  margin:auto;
+}
+#bg {
+  position: absolute;
+  width: 800px;
+  height: 350px;
+}
+#content {
+  padding-left: 15px;
+  visibility: hidden;
+}
+#info {
+  margin-top: 20px;
+}
+#feature {
+  position: relative;
+  float: left;
+}
+#description {
+  position: relative;
+  float: left;
+  margin-left: 20px;
+  width: 290px;
+  font-size: 16px;
+  line-height: 24px;
+}
+#nav {
+text-align:right;
+  margin:20px 10px;
+}
+#nav img {
+  text-align:center;
+  position: relative;
+  margin-right: 20px;
+ 
+}
+button {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+button:nth-child(1){
+  margin-left:10px;
+}
+
+#slider{
+  width: 580px;
+  margin:10px auto;
+  
+}
+
+.ui-widget-content {
+  background-color:rgba(255, 255, 255, 0.2);
+}
+</style>
 <div id="demoWrapper">
   <div id="bg"></div>
+
+    <!-- title description -->
     <div id="content">
-      <h1>Freakishly Robust</h1>
-      <h2>With features that makes other engines look like cheap toys</h2>
-      <div id="info"><img src="http://www.greensock.com/wp-content/uploads/custom/codepen/feature_robust.png" width="240" height="151" id="feature">
-        <p id="description">Animate colors, beziers, css properties, arrays, scrolls and lots more. Round values, smoothly reverse() on the fly, use relative values, employ virtually any easing equation, and manage conflicting tweens like a pro. GSAP does all this and much more with ease.</p>
+      <h1>{{slide.titulo}}</h1>
+      <h2>{{slide.descripcion}}</h2>
+      <div id="info"><img src="http://sityoo.com/site/assets/files/{{slide.imagen}}" width="240" height="151" id="feature">
+        <p id="description">{{slide.descripcion}}</p>
       </div>
-      
-  </div>
-  <div style="clear:both"></div>
-  <div id="nav"> <img src="http://www.greensock.com/wp-content/uploads/custom/codepen/icon_robust.png" width="83" height="59"><img src="http://www.greensock.com/wp-content/uploads/custom/codepen/icon_overwrite.png" width="43" height="59"><img src="http://www.greensock.com/wp-content/uploads/custom/codepen/icon_compatible.png" width="73" height="59"><img src="http://www.greensock.com/wp-content/uploads/custom/codepen/icon_support.png" width="83" height="59"><img src="http://www.greensock.com/wp-content/uploads/custom/codepen/icon_plugin.png" width="76" height="59">
-      </div>
-  <div>
-  <button id="play">play()</button>
-  <button id="pause">pause()</button>
-  <button id="reverse">reverse()</button>
-  <button id="resume">resume()</button>
-  <button id="stagger">play("stagger")</button>
-  <button id="restart">restart</button>
-</div>
+    </div>
+
 <div id="sliderWrapper">
-<div id="slider"></div>
-</div>
+  <div id="slider"></div>
 </div>
 
+</div>
