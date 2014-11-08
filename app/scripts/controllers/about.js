@@ -8,7 +8,7 @@
  * Controller of the tweenLiteApp
  */
 angular.module('tweenLiteApp')
-  .controller('AboutCtrl', function ($scope, $q, pwPage) {
+  .controller('AboutCtrl', function ($scope, $q, pwPage, $window) {
 
   	$scope.slides = [];			// contenedor de slides
   	var numSlides = 0;			// numero de slides
@@ -57,39 +57,25 @@ angular.module('tweenLiteApp')
 	 */
 	function animateSlide(){
 		var head = ("h1"),
-			content = ("#content"),
+			todo = (".todo"),
 		    subhead = ("h2"),
 		    bg_image = ("#bg_image"),
 		    description = ("#description"),
 		    icons = ("#nav img");
 		 
-		TweenLite.set(content, {visibility:"visible"})
-
+		// TweenLite.set(content, {visibility:"visible"})
+		
+		var startPoint = $window.innerWidth * 0.5
 		//instantiate a TimelineLite    
 		var tl = new TimelineLite();
 
-		//add a from() tween at the beginning of the timline
-		tl.from(head, 0.5, {left:100, opacity:0});
 
-		//add another tween immediately after
-		tl.from(subhead, 0.5, {left:-100, opacity:0});
+		tl.fromTo(todo, 4, { alpha: 0.5}, {alpha: 1})
+		.fromTo(todo, 2, { alpha: 1}, {alpha: 0.5})
+		// tl.fromTo(bg_image, 4, { alpha: 0}, {alpha: 1})
+		// .fromTo(head, 1, { left: startPoint, alpha: 0}, {left: 50, alpha: 1, ease: Ease.easeInOut})
+		// .fromTo(subhead, 1, { left: startPoint, alpha: 0}, {left: 50, alpha: 1, ease: Ease.easeInOut})
 
-		//use position parameter "+=0.5" to schedule next tween 0.5 seconds after previous tweens end
-		tl.from(bg_image, 0.3, {autoAlpha:1, display:'block'});
-
-		//use position parameter "-=0.5" to schedule next tween 0.25 seconds before previous tweens end.
-		//great for overlapping
-		tl.from(description, 0.5, {left:100, autoAlpha:0}, "-=0.25");
-
-		//add a label 0.5 seconds later to mark the placement of the next tween
-		tl.add("stagger", "+=0.5")
-		//to jump to this label use: tl.play("stagger");
-
-		//stagger the animation of all icons with 0.1s between each tween's start time
-		//this tween is added
-		tl.staggerFrom(icons, 0.2, {scale:0, autoAlpha:0}, 0.1, "stagger");
-
-		/* --- Control playback methods --- */
 	}
 
 

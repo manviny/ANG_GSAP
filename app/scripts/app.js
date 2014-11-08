@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/slideFade', {
+        templateUrl: 'views/slidefade.html',
+        controller: 'SlidefadeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
